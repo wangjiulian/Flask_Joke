@@ -49,6 +49,9 @@ class JokeService:
     @staticmethod
     def get_joke_by_id(joke_id):
         joke = Joke.get_by_id(joke_id)
+        if joke:
+            joke = joke.model_to_dict()
+
         if not joke:
             joke = ChuckNorrisAPI.get_joke_by_id(joke_id)
             if not joke:
@@ -59,9 +62,11 @@ class JokeService:
     @staticmethod
     def add_joke(value, icon_url):
         idStr = generate_uuid_string()
-        url = f"{REPLACE_URL_INFIX}{idStr}"
-        Joke(id=idStr, url=url, value=value, icon_url=icon_url).add()
-        return Response.success({})
+        url = f"{API_PREFIX}/{idStr}"
+        joke = Joke(id=idStr, url=url, value=value, icon_url=icon_url)
+        joke.add()
+
+        return Response.success(joke.model_to_dict())
 
     @staticmethod
     def update_joke(joke_id, value, icon_url):
@@ -79,6 +84,6 @@ class JokeService:
         if not joke:
             return Response.not_found()
 
-        joke.delete()
+        joke.remove()
 
         return Response.success({})

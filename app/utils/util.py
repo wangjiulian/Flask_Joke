@@ -1,3 +1,5 @@
+import random
+import string
 import uuid
 from app.constants import *
 from app.config import Config
@@ -27,3 +29,8 @@ def check_image_accessible(url):
 def is_image_url(url):
     pattern = r'^https?:\/\/.*\.(jpg|jpeg|png|gif|bmp|webp|tiff)$'
     return re.match(pattern, url, re.IGNORECASE) is not None
+
+
+def generate_random_string(length=10):
+    letters = string.ascii_letters + string.digits
+    return ''.join(random.choice(letters) for _ in range(length))

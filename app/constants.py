@@ -1,19 +1,18 @@
 """ Constants for the application. """
 JokeBlueprint = 'joke'
+API_PREFIX = "/api/jokes"
+API_ID_SUFFIX = "<string:joke_id>"
 API_INDEX = "/"
-API_GET_JOKE_RANDOM = "/api/random"
-API_GET_JOKE_DETAIL = "/api/jokes/<string:joke_id>"
-API_GET_JOKE_SEARCH = "/api/jokes/search"
-API_POST_JOKE_ADD = "/api/jokes"
-API_PUT_JOKE_UPDATE = "/api/jokes/<string:joke_id>"
-API_DELETE_JOKE_REMOVE = "/api/jokes/<string:joke_id>"
+API_GET_JOKE_DETAIL = f"{API_PREFIX}/{API_ID_SUFFIX}"
+API_GET_JOKE_SEARCH = f"{API_PREFIX}/search"
+API_POST_JOKE_ADD = API_PREFIX
+API_PUT_JOKE_UPDATE = f"{API_PREFIX}/{API_ID_SUFFIX}"
+API_DELETE_JOKE_REMOVE = f"{API_PREFIX}/{API_ID_SUFFIX}"
 
 DATABASE_URL = "DATABASE_URL"
 HTTP_SERVER_URL = "HTTP_SERVER_URL"
-REPLACE_URL_INFIX = "/api/jokes/"
 DEFAULT_SERVER_URL = "http://127.0.0.1:5000"
 DEFAULT_SQLALCHEMY_DATABASE_URI = "sqlite:///data.db"
-
 
 # Models Column Length
 ID_MAX_LENGTH = 30
@@ -59,10 +58,6 @@ ERROR_NO_QUERY = "No query provided"
 ERROR_INVALID_QUERY_LENGTH = f"query size must be between {QUERY_MIN_LENGTH} and {QUERY_MAX_LENGTH}"
 ERROR_INVALID_VALUE_LENGTH = f"value size must be between {VALUE_MIN_LENGTH} and {VALUE_MAX_LENGTH}"
 ERROR_INVALID_ICON_URL_LENGTH = f"icon url size must not be more than {ICON_URL_MAX_LENGTH}"
-
-
-
-
 
 """ Chuck Norris constants. """
 # Chuck Norris API

@@ -26,6 +26,10 @@ class Joke(db.Model):
         self.icon_url = icon_url
         db.session.commit()
 
+    def remove(self):
+        self.delete()
+        db.session.commit()
+
     @staticmethod
     def get_by_id(joke_id):
         return Joke.query.get(joke_id)
