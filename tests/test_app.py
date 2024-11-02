@@ -12,7 +12,7 @@ def app():
     Config.HTTP_SERVER_URL = 'http://localhost:5000'
     Config.SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
 
-    app = create_app()
+    app = create_app(open_docs=False)
     app.config['TESTING'] = True
     with app.app_context():
         yield app

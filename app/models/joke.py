@@ -3,10 +3,6 @@ from app.constants import *
 from app.config import Config
 
 
-def update():
-    db.session.commit()
-
-
 class Joke(db.Model):
     id = db.Column(db.String(ID_MAX_LENGTH), primary_key=True)
     value = db.Column(db.String(VALUE_MAX_LENGTH), nullable=False)
