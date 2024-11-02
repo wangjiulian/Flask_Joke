@@ -1,7 +1,7 @@
 import pytest
 
 from app import create_app
-from app.db import db, init_app
+from app.db import db, init_db
 from app.utils.util import *
 from app.config import Config
 from app.constants import *
@@ -26,7 +26,7 @@ def client(app):
 @pytest.fixture
 def database(app):
     with app.app_context():
-        init_app(app)
+        init_db(app)
         yield db
         db.session.remove()
         db.drop_all()

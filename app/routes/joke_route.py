@@ -1,8 +1,8 @@
 from flask import blueprints, request, jsonify
-
-from app.constants import *
-from app.services.joke_service import JokeService
+from flasgger import swag_from
 from werkzeug.exceptions import BadRequest
+
+from app.services.joke_service import JokeService
 from app.utils.response import Response
 from app.utils.util import *
 

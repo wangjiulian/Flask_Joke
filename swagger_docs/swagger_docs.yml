@@ -1,0 +1,194 @@
+# General information about the API
+swagger: "2.0"
+info:
+  description: "API documentation for Flask_Joke project"
+  version: "1.0.0"
+  title: "Flask_Joke API"
+host: "127.0.0.1:5000"
+schemes:
+  - "http"
+
+paths:
+  /:
+    get:
+      tags:
+        - "Joke API"
+      summary: "Get a random joke"
+      responses:
+        200:
+          description: "A successful response"
+          schema:
+            type: "object"
+            properties:
+              icon_url:
+                type: "string"
+                example: "https://api.chucknorris.io/img/avatar/chuck-norris.png"
+              id:
+                type: "string"
+                example: "y8w0OTXaSeWTiM3l7puX5w"
+              url:
+                type: "string"
+                example: "http://127.0.0.1:5000/api/jokes/y8w0OTXaSeWTiM3l7puX5w"
+              value:
+                type: "string"
+                example: "When Chuck Norris looks at the clock, he knows that the times not right. Because he decides what time it is."
+
+  /api/jokes/search:
+    get:
+      tags:
+        - "Joke API"
+      summary: "Search for jokes"
+      parameters:
+        - name: "query"
+          in: "query"
+          required: false
+          type: "string"
+
+      responses:
+        200:
+          description: "A successful response"
+          schema:
+            type: "object"
+            properties:
+              total:
+                type: "integer"
+                example: 1
+              result:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    icon_url:
+                      type: "string"
+                      example: "https://api.chucknorris.io/img/avatar/chuck-norris.png"
+                    id:
+                      type: "string"
+                      example: "y8w0OTXaSeWTiM3l7puX5w"
+                    url:
+                      type: "string"
+                      example: "http://127.0.0.1:5000/api/jokes/y8w0OTXaSeWTiM3l7puX5w"
+                    value:
+                      type: "string"
+                      example: "When Chuck Norris looks at the clock, he knows that the times not right. Because he decides what time it is."
+
+  /api/jokes/{id}:
+    get:
+      tags:
+        - "Joke API"
+      summary: "Get a joke by ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "string"
+          description: "ID of the joke"
+      responses:
+        200:
+          description: "A successful response"
+          schema:
+            type: "object"
+            properties:
+              icon_url:
+                type: "string"
+                example: "https://api.chucknorris.io/img/avatar/chuck-norris.png"
+              id:
+                type: "string"
+                example: "y8w0OTXaSeWTiM3l7puX5w"
+              url:
+                type: "string"
+                example: "http://127.0.0.1:5000/api/jokes/y8w0OTXaSeWTiM3l7puX5w"
+              value:
+                type: "string"
+                example: "When Chuck Norris looks at the clock, he knows that the times not right. Because he decides what time it is."
+    put:
+      tags:
+        - "Joke API"
+      summary: "Update a joke"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "string"
+          description: "ID of the joke"
+        - in: body
+          name: "body"
+          schema:
+            type: "object"
+            properties:
+              value:
+                type: "string"
+                example: "When Chuck Norris looks at the clock, he knows that the times not right. Because he decides what time it is."
+              icon_url:
+                type: "string"
+                example: "https://api.chucknorris.io/img/avatar/chuck-norris.png"
+      responses:
+        200:
+          description: "A successful response"
+          schema:
+            type: "object"
+            properties:
+              icon_url:
+                type: "string"
+                example: "https://api.chucknorris.io/img/avatar/chuck-norris.png"
+              id:
+                type: "string"
+                example: "y8w0OTXaSeWTiM3l7puX5w"
+              url:
+                type: "string"
+                example: "http://127.0.0.1:5000/api/jokes/y8w0OTXaSeWTiM3l7puX5w"
+              value:
+                type: "string"
+                example: "When Chuck Norris looks at the clock, he knows that the times not right. Because he decides what time it is."
+    delete:
+      tags:
+        - "Joke API"
+      summary: "Delete a joke"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "string"
+          description: "ID of the joke"
+      responses:
+        200:
+          description: "A successful response"
+          schema:
+            type: "object"
+            properties:
+  /api/jokes:
+    post:
+      tags:
+        - "Joke API"
+      summary: "Create a new joke"
+      parameters:
+        - in: body
+          name: "body"
+          schema:
+            type: "object"
+            properties:
+              value:
+                type: "string"
+                example: "When Chuck Norris looks at the clock, he knows that the times not right. Because he decides what time it is."
+              icon_url:
+                type: "string"
+                example: "https://api.chucknorris.io/img/avatar/chuck-norris.png"
+      responses:
+        200:
+          description: "A successful response"
+          schema:
+            type: "object"
+            properties:
+              icon_url:
+                type: "string"
+                example: "https://api.chucknorris.io/img/avatar/chuck-norris.png"
+              id:
+                type: "string"
+                example: "y8w0OTXaSeWTiM3l7puX5w"
+              url:
+                type: "string"
+                example: "http://127.0.0.1:5000/api/jokes/y8w0OTXaSeWTiM3l7puX5w"
+              value:
+                type: "string"
+                example: "When Chuck Norris looks at the clock, he knows that the times not right. Because he decides what time it is."
+
+
