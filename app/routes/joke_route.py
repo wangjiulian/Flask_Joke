@@ -1,5 +1,4 @@
-from flask import blueprints, request, jsonify
-from flasgger import swag_from
+from flask import blueprints, request
 from werkzeug.exceptions import BadRequest
 
 from app.services.joke_service import JokeService
@@ -13,8 +12,9 @@ joke = blueprints.Blueprint(JokeBlueprint, __name__)
 def index():
     try:
         return JokeService.get_random_joke()
+
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return Response.InternalServerError(API_INDEX, e)
 
 
 @joke.route(API_GET_JOKE_SEARCH, methods=[HTTP_GET])
@@ -30,7 +30,7 @@ def get_joke_search():
         return JokeService.search_jokes(query)
 
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return Response.InternalServerError(API_GET_JOKE_SEARCH, e)
 
 
 @joke.route(API_GET_JOKE_DETAIL, methods=[HTTP_GET])
@@ -43,7 +43,7 @@ def get_joke_detail(joke_id):
         return JokeService.get_joke_by_id(joke_id)
 
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return Response.InternalServerError(API_GET_JOKE_DETAIL, e)
 
 
 @joke.route(API_POST_JOKE_ADD, methods=[HTTP_POST])
@@ -58,7 +58,7 @@ def add_joke():
     except BadRequest as e:
         return Response.bad_request(ERROR_INVALID_JSON)
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return Response.InternalServerError(API_GET_JOKE_DETAIL, e)
 
 
 @joke.route(API_PUT_JOKE_UPDATE, methods=[HTTP_PUT])
@@ -77,7 +77,7 @@ def update_joke(joke_id):
     except BadRequest as e:
         return Response.bad_request(ERROR_INVALID_JSON)
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return Response.InternalServerError(API_PUT_JOKE_UPDATE, e)
 
 
 @joke.route(API_DELETE_JOKE_REMOVE, methods=[HTTP_DELETE])
@@ -88,8 +88,9 @@ def remove_joke(joke_id):
             return Response.bad_request(ERROR_NO_ID)
 
         return JokeService.delete_joke(joke_id)
+
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return Response.InternalServerError(API_DELETE_JOKE_REMOVE, e)
 
 
 def _check_data():

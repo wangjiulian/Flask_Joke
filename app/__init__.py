@@ -9,6 +9,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     init_db(app)
+    app.logger.setLevel(Config.LOGGING_LEVEL)
     app.register_blueprint(joke)
     init_swagger(app)
 

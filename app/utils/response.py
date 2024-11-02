@@ -1,4 +1,6 @@
-from flask import jsonify
+import traceback
+
+from flask import jsonify, current_app
 from app.constants import *
 
 
@@ -14,3 +16,8 @@ class Response:
     @staticmethod
     def bad_request(obj):
         return jsonify({ERROR: obj}), HTTP_BAD_REQUEST
+
+    @staticmethod
+    def InternalServerError(title, e):
+        current_app.logger.error(f"{title} occurred error: %s\n%s", str(e), traceback.format_exc())
+        return jsonify({ERROR: ERROR_INTERNAL_SERVER_ERROR}), HTTP_INTERNAL_SERVER_ERROR

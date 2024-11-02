@@ -58,6 +58,13 @@ ERROR_NO_QUERY = "No query provided"
 ERROR_INVALID_QUERY_LENGTH = f"query size must be between {QUERY_MIN_LENGTH} and {QUERY_MAX_LENGTH}"
 ERROR_INVALID_VALUE_LENGTH = f"value size must be between {VALUE_MIN_LENGTH} and {VALUE_MAX_LENGTH}"
 ERROR_INVALID_ICON_URL_LENGTH = f"icon url size must not be more than {ICON_URL_MAX_LENGTH}"
+ERROR_INTERNAL_SERVER_ERROR = "Internal server error"
+
+
+"""Logging constants. """
+LOGGING_LEVEL = "LEVEL"
+DEFAULT_LOGGING_LEVEL = "INFO"
+
 
 """ Chuck Norris constants. """
 # Chuck Norris API
