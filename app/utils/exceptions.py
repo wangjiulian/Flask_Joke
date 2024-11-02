@@ -1,0 +1,2 @@
+class ChuckNorrisException(Exception):
+    pass
