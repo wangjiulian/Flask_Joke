@@ -28,7 +28,7 @@ class Joke(db.Model):
 
     @staticmethod
     def get_by_id(joke_id):
-        return Joke.query.get(joke_id)
+        return db.session.get(Joke, joke_id)
 
     @staticmethod
     def search_jokes(query, limit=DEFAULT_LIMIT):
