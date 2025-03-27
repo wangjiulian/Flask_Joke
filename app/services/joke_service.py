@@ -11,7 +11,7 @@ class JokeService:
     @staticmethod
     def get_random_joke():
         joke = ChuckNorrisAPI.get_random_joke()
-        if not joke:
+        if not joke:l
             return Response.not_found()
 
         return Response.success(Joke.to_joke_dict(joke))
